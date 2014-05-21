@@ -29,17 +29,21 @@ public:
              float mt04, float mt05, float mt06,
              float mt07, float mt08, float mt09 );
    
-    float getDeterminant();
+    float determinant();
     
+    Matrix3 transpose();
     Matrix3 inverse();
     Matrix3 operator-(const Matrix3 &mtx);
     Matrix3 operator+(const Matrix3 &mtx);
     Matrix3 operator*(const Matrix3 &mtx);
-   
+    
+    
     
     void    operator+=(const Matrix3 &mtx);
     void    operator-=(const Matrix3 &mtx);
     void    operator*=(const Matrix3 &mtx);
+    
+    
     
     void operator/(const float escalar);
     

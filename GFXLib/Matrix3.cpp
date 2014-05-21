@@ -130,16 +130,10 @@ Matrix3 Matrix3::operator*(const Matrix3 &mat){
 
 }
 
-/*
- 
- m11,  m12,  m13,
- m21,  m22,  m23,
- m31,  m32,  m33;
- 
- */
 
 
-float Matrix3::getDeterminant(){
+
+float Matrix3::determinant(){
 
 
     return ((m11*((m22*m33)-(m23*m32)))- (m12 *((m21*m33)-(m23*m31)))) + (m13 * ((m21*m32)-(m22*m31)))  ;
@@ -175,7 +169,7 @@ void Matrix3::operator/(const float escalar){
 
 Matrix3 Matrix3::inverse(){
 
-    float det = (*this).getDeterminant();
+    float det = (*this).determinant();
     
     /*Matrix3 tmp( (m22*m33)-(m23*m32), (m23*m31)-(m21*m33), (m21*m32)-(m22*m31),
                  (m13*m32)-(m12*m33), (m11*m33)-(m13*m31), (m12*m31)-(m11*m32),
@@ -193,5 +187,21 @@ Matrix3 Matrix3::inverse(){
     return tmp;
 }
 
+
+Matrix3 Matrix3::transpose(){
+
+    /*
+     
+     m11,  m12,  m13,
+     m21,  m22,  m23,
+     m31,  m32,  m33;
+     
+     */
+
+
+    return Matrix3(m11, m21, m31,
+                   m12, m22, m32,
+                   m13, m23, m33);
+}
 
 

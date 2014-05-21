@@ -7,9 +7,10 @@
 //
 
 #include <iostream>
+#include <stdio.h>
 #include "Vector.h"
 #include "Matrix3.h"
-
+#include "Quaternion.h"
 
 using namespace mlc;
 
@@ -129,10 +130,10 @@ void showMat(const Matrix3 mat){
     std::cout << mat.m31 << " " << mat.m32 << " " << mat.m33 << std::endl;
     std::cout << " " << std::endl;
     
-/*    printf("\n\n%f %f %f \n", mat.m11,mat.m12,mat.m13 );
+    printf("\n\n%f %f %f \n", mat.m11,mat.m12,mat.m13 );
     printf("%f %f %f \n", mat.m21,mat.m22,mat.m23 );
     printf("%f %f %f \n\n", mat.m31,mat.m32,mat.m33 );
-  */
+ 
 }
 
 void test_mat_add(){
@@ -159,7 +160,7 @@ void test_mat_add(){
     showMat(mtx3);
     
     
-    std::cout << "mtx3.Determinant: "<< mtx3.getDeterminant() << std::endl;
+    std::cout << "mtx3.Determinant: "<< mtx3.determinant() << std::endl;
     
     std::cout << "inverse" << std::endl;
     
@@ -177,13 +178,48 @@ void test_mat_add(){
     
 }
 
+void euler_proof(){
+
+    Matrix3 R(  cosf(1.57079633), -sinf(1.57079633), 0.0f,
+                sinf(1.57079633), cosf(1.57079633),  0.0f,
+                0.0f,       0.0f,       1.0f);
+/*
+    Matrix3 R(  1.0f, 0.0f,  0.0f,
+                0.0f, 1.0f,  0.0f,
+                0.0f, 0.0f,  1.0f);
+      */
+    
+   // Matrix3 _R = R.determinant();
+    
+    showMat(R);
+    
+    std::cout << "determinant " << R.determinant() << std::endl;
+    printf("--> %f \n", R.determinant() );
+   // showMat(_R);
+    
+
+}
+
+
+void quat(){
+
+    Quaternion q1(1.0f ,1.0f, 2.0f , 3.0f );
+    Quaternion q2(1.0f ,1.0f, 2.0f , 3.0f );
+
+    q1 *= q2;
+    
+    printf("w%f x%f y%f z%f", q1.w, q1.x, q1.y, q1.z);
+    
+
+}
+
 int main(int argc, const char * argv[])
 {
     //cross_test();
     //prueba2();
-    test_mat_add();
- 
-    
+   // test_mat_add();
+    //euler_proof();
+    quat();
     return 0;
 }
 

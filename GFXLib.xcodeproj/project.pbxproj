@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5617CB719277702008E0A90 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5617CB519277702008E0A90 /* Quaternion.cpp */; };
 		B5B10CE6191F83D100AA3FD1 /* Matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B10CE4191F83D100AA3FD1 /* Matrix3.cpp */; };
 		B5EB899F191681A100CD8DE7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EB899E191681A100CD8DE7 /* main.cpp */; };
 		B5EB89A1191681A100CD8DE7 /* GFXLib.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5EB89A0191681A100CD8DE7 /* GFXLib.1 */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B5617CB519277702008E0A90 /* Quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quaternion.cpp; sourceTree = "<group>"; };
+		B5617CB619277702008E0A90 /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
 		B5B10CE4191F83D100AA3FD1 /* Matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix3.cpp; sourceTree = "<group>"; };
 		B5B10CE5191F83D100AA3FD1 /* Matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix3.h; sourceTree = "<group>"; };
 		B5EB899B191681A100CD8DE7 /* GFXLib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GFXLib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +79,8 @@
 		B5EB89A7191681AA00CD8DE7 /* matematica */ = {
 			isa = PBXGroup;
 			children = (
+				B5617CB519277702008E0A90 /* Quaternion.cpp */,
+				B5617CB619277702008E0A90 /* Quaternion.h */,
 				B5EB89A8191681C200CD8DE7 /* Vector.cpp */,
 				B5EB89A9191681C200CD8DE7 /* Vector.h */,
 				B5B10CE4191F83D100AA3FD1 /* Matrix3.cpp */,
@@ -136,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B10CE6191F83D100AA3FD1 /* Matrix3.cpp in Sources */,
+				B5617CB719277702008E0A90 /* Quaternion.cpp in Sources */,
 				B5EB89AA191681C200CD8DE7 /* Vector.cpp in Sources */,
 				B5EB899F191681A100CD8DE7 /* main.cpp in Sources */,
 			);
