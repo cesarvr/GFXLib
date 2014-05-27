@@ -22,9 +22,9 @@ namespace mlc {
         
         Quaternion(): w(0.0f), x(0.0f) , y(0.0f), z(0.0f) {};
         Quaternion(float w, float x, float y, float z);
-		Quaternion conjugate();
+	Quaternion conjugate();
 
-	    float magnitud();	
+ 	float magnitud();	
         float dot( const Quaternion& vec );
         void operator*= ( const Quaternion& qa );
       
