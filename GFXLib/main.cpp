@@ -8,9 +8,7 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "Vector.h"
-#include "Matrix3.h"
-#include "Quaternion.h"
+#include "GFXLib.h"
 
 using namespace mlc;
 
@@ -208,7 +206,7 @@ void quat(){
 
     q1 *= q2;
     
-    printf("w%f x%f y%f z%f", q1.w, q1.x, q1.y, q1.z);
+    printf(" --> w%f x%f y%f z%f", q1.w, q1.x, q1.y, q1.z);
     
 
 }
