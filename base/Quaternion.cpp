@@ -1,23 +1,52 @@
+//
+//  Quaternion.cpp
+//  GFXLib
+//
+//  Created by Cesar Luis Valdez on 04/05/14.
+//  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
+//
+
 #include "Quaternion.h"
 
-using namespace mlc; 
 
-Quaternion::Quaternion(): w(0.0f), x(0.0f), y(0.0f), z(0.0f){
+using namespace mlc;
+
+
+Quaternion::Quaternion(float _w, float _x, float _y, float _z): w( _w ), x( _x ), y( _y ), z( _z ){
+       
+}
+
+
+
+void Quaternion::operator*= ( const Quaternion& qa ){
+
+ 	Quaternion tmp;
+	tmp.w = (w * qa.w) - (x * qa.x) - (y * qa.y) - (z * qa.z);
+	tmp.x = (x * qa.w) + (w * qa.x) + (y * qa.z) - (z * qa.y); 
+	tmp.y = (y * qa.w) + (w * qa.y) + (z * qa.x) - (x * qa.z); 
+	tmp.z = (z * qa.w) + (w * qa.z) + (x * qa.y) - (y * qa.x); 
+	
+	(*this) = tmp; 
 
 }
 
-Quaternion::Quaternion(float _w, float _x, float _y, float _z): w(_w), x(_x), y(_y), z(_z){
+float Quaternion::dot( const Quaternion &q ){
+	return ( w * q.w + x*q.x + y*q.y + z*q.z ); 
+}
+
+
+float Quaternion::magnitud (){
+
+	return sqrt(w*w + x*x + y*y + z*z );
+}
+
+Quaternion Quaternion::conjugate(){
+	
+	return Quaternion(w, -x, -y, -z);
 
 }
 
-void Quaternion::operator *= (const Quaternion q){
 
-	Quaternion tmp; 
-	tmp.w = w*q.w - x * q.x - y * q.y - z * q.z;
-	tmp.x = w*q.x + x * q.w + y * q.z - z * q.y;
-	tmp.y = w*q.y - y * q.z + y * q.w + z * q.x; 
-	tmp.z = w*q.z + z * q.y - y * q.x + z * q.w;
 
-	*this = tmp;
 
-}
+
