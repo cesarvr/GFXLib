@@ -11,7 +11,7 @@
  
 #include "base/Matrix3.h"
 #include "base/Quaternion.h"
-#include "base/Vector.h"
+#include "base/Vector3.h"
 
 
 #endif /* defined(__GFXLib__GFXL__) */
