@@ -31,6 +31,8 @@ namespace mlc {
         void    operator -=( const Matrix4 &Mat );
         void    operator *=( const Matrix4 &Mat );
         Matrix4 operator * ( const Matrix4 &Mat );
+        
+        Matrix4 getTranslationMatrix(float x, float y, float z);
     };
 }
 

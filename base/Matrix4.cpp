@@ -153,3 +153,14 @@ Matrix4 Matrix4::operator*(const mlc::Matrix4 &mat){
     return tmp;
 }
 
+Matrix4 Matrix4::getTranslationMatrix(float x, float y, float z){
+
+    Matrix4 tmp;
+    
+    tmp.m14 = x;
+    tmp.m24 = y;
+    tmp.m34 = z;
+    
+    return tmp;
+
+}
