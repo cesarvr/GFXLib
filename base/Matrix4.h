@@ -10,6 +10,7 @@
 #define __Block_saga__Matrix4__
 
 #include <iostream>
+#include <math.h>
 
 namespace mlc {
     class Matrix4{
@@ -32,7 +33,11 @@ namespace mlc {
         void    operator *=( const Matrix4 &Mat );
         Matrix4 operator * ( const Matrix4 &Mat );
         
-        Matrix4 getTranslationMatrix(float x, float y, float z);
+        static Matrix4 translation(Matrix4& mat,  float x, float y, float z);
+        static Matrix4 rotateX(Matrix4& mat, float rad);
+        static Matrix4 rotateY(Matrix4& mat, float rad);
+        static Matrix4 rotateZ(Matrix4& mat, float rad);
+        
     };
 }
 

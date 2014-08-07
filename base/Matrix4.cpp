@@ -153,14 +153,74 @@ Matrix4 Matrix4::operator*(const mlc::Matrix4 &mat){
     return tmp;
 }
 
-Matrix4 Matrix4::getTranslationMatrix(float x, float y, float z){
 
+Matrix4 Matrix4::translation( Matrix4& mat,  float x, float y, float z){
     Matrix4 tmp;
     
     tmp.m14 = x;
     tmp.m24 = y;
     tmp.m34 = z;
     
-    return tmp;
-
+    return mat*tmp;
 }
+
+/*
+ m11,  m12,  m13, m14,
+ m21,  cos(m22),  -sin(m23), m24,
+ m31,  sin(m32),  cos(m33), m34,
+ m41,  m42,  m43, m44;
+ 
+ */
+
+
+Matrix4 Matrix4::rotateX(mlc::Matrix4 &mat, float rad){
+    
+    Matrix4 tmp;
+    
+    
+    tmp.m22 = tmp.m33 = cosf(rad);
+    tmp.m32 = sinf(rad);
+    tmp.m23 = -tmp.m32;
+
+    return mat*tmp;
+}
+
+
+/*
+ cos-> m11,  m12,  sin->m13, m14,
+       m21,  m22,       m23, m24,
+ -sin->m31,  m32,  cos->m33, m34,
+       m41,  m42,       m43, m44;
+ 
+ */
+
+Matrix4 Matrix4::rotateY(mlc::Matrix4 &mat, float rad){
+    Matrix4 tmp;
+    tmp.m11 = tmp.m33 = cosf(rad);
+    tmp.m13 = sinf(rad); tmp.m31 = -tmp.m13;
+
+    return  mat*tmp;
+}
+
+
+
+/*
+ cos-> m11,  -sin->m12,
+ sin->m21,    cos->m22,
+ */
+
+Matrix4 Matrix4::rotateZ(mlc::Matrix4 &mat, float rad){
+    Matrix4 tmp;
+    tmp.m11 = tmp.m22 = cosf(rad);
+    tmp.m21 = sinf(rad); tmp.m12 = -tmp.m21;
+    
+    return  mat*tmp;
+}
+
+
+
+
+
+
+
+
