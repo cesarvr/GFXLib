@@ -217,8 +217,28 @@ Matrix4 Matrix4::rotateZ(mlc::Matrix4 &mat, float rad){
     return  mat*tmp;
 }
 
+/*
+ m11,  m12,  m13, m14,
+ m21,  m22,  m23, m24,
+ m31,  m32,  m33, m34,
+ m41,  m42,  m43, m44;
+ 
+ */
 
+Matrix4 Matrix4::makeOrthographic(float left, float right,
+                                float bottom, float top,
+                                float nearZ, float farZ){
 
+    Matrix4 tmp;
+    tmp.m11 = 2.0f / (right-left);
+    tmp.m22 = 2.0f / (top-bottom);
+    tmp.m33 = -2.0f / (farZ-nearZ);
+    tmp.m14 = -(right + left) / (right - left);
+    tmp.m24 = -(top + bottom) / (top - bottom);
+    tmp.m34 = -(farZ + nearZ) / (farZ - nearZ);
+    
+    return  tmp;
+}
 
 
 

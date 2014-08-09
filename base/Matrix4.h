@@ -32,12 +32,15 @@ namespace mlc {
         void    operator -=( const Matrix4 &Mat );
         void    operator *=( const Matrix4 &Mat );
         Matrix4 operator * ( const Matrix4 &Mat );
+       // Matrix4& operator = ( const Matrix4 &Mat );
         
         static Matrix4 translation(Matrix4& mat,  float x, float y, float z);
-        static Matrix4 rotateX(Matrix4& mat, float rad);
+        static Matrix4 rotateX( Matrix4& mat, float rad);
         static Matrix4 rotateY(Matrix4& mat, float rad);
         static Matrix4 rotateZ(Matrix4& mat, float rad);
-        
+        static Matrix4 makeOrthographic(float left, float right,
+                                        float bottom, float top,
+                                        float nearZ, float farZ);
     };
 }
 
