@@ -7,6 +7,7 @@
 //
 
 #include "Matrix4.h"
+#include "Testing.h"
 using namespace mlc;
 
 
@@ -17,6 +18,9 @@ using namespace mlc;
  m41,  m42,  m43, m44;
  
  */
+
+
+
 
 Matrix4::Matrix4(){
     m12 = m13 = m14 = m21 = m23 = m24 = m31 =
@@ -52,9 +56,11 @@ void Matrix4::operator +=( const Matrix4 &Mat ){
     m11+= Mat.m11;
     m12+= Mat.m12;
     m13+= Mat.m13;
+    m14+= Mat.m14;
     m21+= Mat.m21;
     m22+= Mat.m22;
     m23+= Mat.m23;
+    m24+= Mat.m24;
     m31+= Mat.m31;
     m32+= Mat.m32;
     m33+= Mat.m33;
@@ -78,12 +84,15 @@ Matrix4 Matrix4::operator-( const Matrix4 &Mat ){
 
 void Matrix4::operator -=( const Matrix4 &Mat ){
     
+    
     m11-= Mat.m11;
     m12-= Mat.m12;
     m13-= Mat.m13;
+    m14-= Mat.m14;
     m21-= Mat.m21;
     m22-= Mat.m22;
     m23-= Mat.m23;
+    m24-= Mat.m24;
     m31-= Mat.m31;
     m32-= Mat.m32;
     m33-= Mat.m33;
@@ -94,11 +103,26 @@ void Matrix4::operator -=( const Matrix4 &Mat ){
     m44-= Mat.m44;
 }
 
+/*
+ m11,  m12,  m13, m14,
+ m21,  m22,  m23, m24,
+ m31,  m32,  m33, m34,
+ m41,  m42,  m43, m44;
+ 
+ *
+ 
+ m11,  m12,  m13, m14,
+ m21,  m22,  m23, m24,
+ m31,  m32,  m33, m34,
+ m41,  m42,  m43, m44;
+ 
+ */
 
 
 void Matrix4::operator*=(const Matrix4 &mat){
     
     Matrix4 tmp;
+    
     
     tmp.m11 = m11 * mat.m11 + m12 * mat.m21 + m13 * mat.m31 + m14 * mat.m41;
     tmp.m12 = m11 * mat.m12 + m12 * mat.m22 + m13 * mat.m32 + m14 * mat.m42;
@@ -119,6 +143,8 @@ void Matrix4::operator*=(const Matrix4 &mat){
     tmp.m42 = m41 * mat.m12 + m42 * mat.m22 + m43 * mat.m32 + m44 * mat.m42;
     tmp.m43 = m41 * mat.m13 + m42 * mat.m23 + m43 * mat.m33 + m44 * mat.m43;
     tmp.m44 = m41 * mat.m14 + m42 * mat.m24 + m43 * mat.m34 + m44 * mat.m44;
+    
+    
     
     
     (*this) = tmp;
@@ -128,6 +154,7 @@ Matrix4 Matrix4::operator*(const mlc::Matrix4 &mat){
     
     Matrix4 tmp;
     
+    
     tmp.m11 = m11 * mat.m11 + m12 * mat.m21 + m13 * mat.m31 + m14 * mat.m41;
     tmp.m12 = m11 * mat.m12 + m12 * mat.m22 + m13 * mat.m32 + m14 * mat.m42;
     tmp.m13 = m11 * mat.m13 + m12 * mat.m23 + m13 * mat.m33 + m14 * mat.m43;
@@ -147,6 +174,8 @@ Matrix4 Matrix4::operator*(const mlc::Matrix4 &mat){
     tmp.m42 = m41 * mat.m12 + m42 * mat.m22 + m43 * mat.m32 + m44 * mat.m42;
     tmp.m43 = m41 * mat.m13 + m42 * mat.m23 + m43 * mat.m33 + m44 * mat.m43;
     tmp.m44 = m41 * mat.m14 + m42 * mat.m24 + m43 * mat.m34 + m44 * mat.m44;
+    
+    
     
     
     
@@ -161,7 +190,21 @@ Matrix4 Matrix4::translation( Matrix4& mat,  float x, float y, float z){
     tmp.m24 = y;
     tmp.m34 = z;
     
+    
     return mat*tmp;
+}
+
+void Matrix4::applyTranslation(float x, float y, float z){
+    Matrix4 tmp;
+    
+    tmp.m14 = x;
+    tmp.m24 = y;
+    tmp.m34 = z;
+    
+    Testing::showMatrix4(tmp);
+
+    *this = *this + tmp;
+     Testing::showMatrix4(*this);
 }
 
 /*
@@ -238,6 +281,36 @@ Matrix4 Matrix4::makeOrthographic(float left, float right,
     tmp.m34 = -(farZ + nearZ) / (farZ - nearZ);
     
     return  tmp;
+}
+
+/*
+ m11,  m12,  m13, m14,
+ m21,  m22,  m23, m24,
+ m31,  m32,  m33, m34,
+ m41,  m42,  m43, m44;
+ 
+ */
+
+float* Matrix4::getMatrix4(){
+
+    Matrix[0] = m11;
+    Matrix[1] = m21;
+    Matrix[2] = m31;
+    Matrix[3] = m41;
+    Matrix[4] = m12;
+    Matrix[5] = m22;
+    Matrix[6] = m32;
+    Matrix[7] = m42;
+    Matrix[8] = m13;
+    Matrix[9] = m23;
+    Matrix[10]= m33;
+    Matrix[11]= m43;
+    Matrix[12]= m14;
+    Matrix[13]= m24;
+    Matrix[14]= m34;
+    Matrix[15]= m44;
+    
+    return Matrix;
 }
 
 

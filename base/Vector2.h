@@ -21,6 +21,7 @@ namespace mlc {
             void operator-= ( const Vector2& vec );
             void operator*= ( const Vector2& vec );
         
+            Vector2 operator/(const float scalar);  
             Vector2 operator-  ( const Vector2& vec );
             Vector2 operator*  ( const Vector2& vec );
             Vector2 operator*  ( const float& escalar );
