@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
 //
 
-#include "Vector2.h"
+#include "vector2.h"
 
 
 using namespace mlc;
@@ -62,4 +62,9 @@ Vector2 Vector2::operator/(float scalar){
 }
 
 
+float Vector2::dot(const mlc::Vector2 &vec){
+    
+
+    return (this->x * vec.x) + (this->y * vec.y);
+}
 

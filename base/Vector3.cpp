@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
 //
 
-#include "Vector3.h"
+#include "vector3.h"
 
 
 using namespace mlc;

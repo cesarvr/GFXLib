@@ -8,10 +8,11 @@
 
 #ifndef __GFXLib__GFXL__
 #define __GFXLib__GFXL__
- 
-#include "base/Matrix3.h"
-#include "base/Quaternion.h"
-#include "base/Vector3.h"
 
+#include "base/matrix4.h"
+#include "base/matrix3.h"
+#include "base/quaternion.h"
+#include "base/vector3.h"
+#include "base/vector2.h"
 
 #endif /* defined(__GFXLib__GFXL__) */

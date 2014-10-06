@@ -9,8 +9,12 @@
 #ifndef __Block_saga__Matrix4__
 #define __Block_saga__Matrix4__
 
+#ifdef __cplus
 #include <iostream>
+
+#endif
 #include <math.h>
+#include <vector>
 
 namespace mlc {
     
@@ -23,13 +27,6 @@ namespace mlc {
     
     class Matrix4{
         public:
-            float   m11,  m12,  m13, m14,
-                    m21,  m22,  m23, m24,
-                    m31,  m32,  m33, m34,
-                    m41,  m42,  m43, m44;
-        
-        
-        float Matrix[16];
         
         Matrix4();
         Matrix4(float _mt11, float _mt12, float _mt13, float _mt14,
@@ -39,7 +36,7 @@ namespace mlc {
     
         Matrix4 operator +(  const Matrix4 &Mat );
         void    operator +=( const Matrix4 &Mat );
-        Matrix4 operator -(  const Matrix4 &Mat );
+        Matrix4 operator -  (  const Matrix4 &Mat );
         void    operator -=( const Matrix4 &Mat );
         void    operator *=( const Matrix4 &Mat );
         Matrix4 operator * ( const Matrix4 &Mat );
@@ -54,8 +51,22 @@ namespace mlc {
         static Matrix4 makeOrthographic(float left, float right,
                                         float bottom, float top,
                                         float nearZ, float farZ);
-        float* getMatrix4();
+        float* GetMatrix();
+        
+private:
+        float   m11,  m12,  m13, m14,
+                m21,  m22,  m23, m24,
+                m31,  m32,  m33, m34,
+                m41,  m42,  m43, m44;
+        
+        
+        std::vector<float> matrix;
     };
+
+    
+
+
+
 }
 
 #endif /* defined(__Block_saga__Matrix4__) */

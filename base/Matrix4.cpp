@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
 //
 
-#include "Matrix4.h"
-#include "Testing.h"
+#include "matrix4.h"
+
 using namespace mlc;
 
 
@@ -201,10 +201,8 @@ void Matrix4::applyTranslation(float x, float y, float z){
     tmp.m24 = y;
     tmp.m34 = z;
     
-    Testing::showMatrix4(tmp);
-
     *this = *this + tmp;
-     Testing::showMatrix4(*this);
+
 }
 
 /*
@@ -273,8 +271,8 @@ Matrix4 Matrix4::makeOrthographic(float left, float right,
                                 float nearZ, float farZ){
 
     Matrix4 tmp;
-    tmp.m11 = 2.0f / (right-left);
-    tmp.m22 = 2.0f / (top-bottom);
+    tmp.m11 =  2.0f / (right-left);
+    tmp.m22 =  2.0f / (top-bottom);
     tmp.m33 = -2.0f / (farZ-nearZ);
     tmp.m14 = -(right + left) / (right - left);
     tmp.m24 = -(top + bottom) / (top - bottom);
@@ -291,26 +289,14 @@ Matrix4 Matrix4::makeOrthographic(float left, float right,
  
  */
 
-float* Matrix4::getMatrix4(){
+float* Matrix4::GetMatrix() {
+    matrix.assign({
+        m11,m21,m31,m41,
+        m12,m22,m32,m42,
+        m13,m23,m33,m43,
+        m14,m24,m34,m44  });
 
-    Matrix[0] = m11;
-    Matrix[1] = m21;
-    Matrix[2] = m31;
-    Matrix[3] = m41;
-    Matrix[4] = m12;
-    Matrix[5] = m22;
-    Matrix[6] = m32;
-    Matrix[7] = m42;
-    Matrix[8] = m13;
-    Matrix[9] = m23;
-    Matrix[10]= m33;
-    Matrix[11]= m43;
-    Matrix[12]= m14;
-    Matrix[13]= m24;
-    Matrix[14]= m34;
-    Matrix[15]= m44;
-    
-    return Matrix;
+    return &matrix[0];
 }
 
 

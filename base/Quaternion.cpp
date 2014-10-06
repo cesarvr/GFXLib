@@ -6,17 +6,13 @@
 //  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
 //
 
-#include "Quaternion.h"
+#include "quaternion.h"
 
 
 using namespace mlc;
 
 
-Quaternion::Quaternion(float _w, float _x, float _y, float _z): w( _w ), x( _x ), y( _y ), z( _z ){
-       
-}
-
-
+Quaternion::Quaternion(float _w, float _x, float _y, float _z): w( _w ), x( _x ), y( _y ), z( _z ){}
 
 void Quaternion::operator*= ( const Quaternion& qa ){
 
@@ -30,20 +26,16 @@ void Quaternion::operator*= ( const Quaternion& qa ){
 
 }
 
-float Quaternion::dot( const Quaternion &q ){
+float Quaternion::Dot( const Quaternion &q ){
 	return ( w * q.w + x*q.x + y*q.y + z*q.z ); 
 }
 
-
-float Quaternion::magnitud (){
-
+float Quaternion::Length (){
 	return sqrt(w*w + x*x + y*y + z*z );
 }
 
-Quaternion Quaternion::conjugate(){
-	
+Quaternion Quaternion::Conjugate(){
 	return Quaternion(w, -x, -y, -z);
-
 }
 
 

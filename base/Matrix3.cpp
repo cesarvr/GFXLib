@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
 //
 
-#include "Matrix3.h"
+#include "matrix3.h"
 
 using namespace mlc;
 
