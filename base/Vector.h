@@ -1,45 +1,86 @@
 //
-//  Vector.h
-//  GFXLib
+//  vector.h
+//  CPluss
 //
-//  Created by Cesar Luis Valdez on 04/05/14.
+//  Created by Cesar Luis Valdez on 12/10/14.
 //  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
 //
 
-#ifndef __GFXLib__Vector__
-#define __GFXLib__Vector__
+#ifndef __CPluss__vector__
+#define __CPluss__vector__
 
-#include <iostream>
+#include <stdio.h>
 #include <math.h>
-namespace mlc {
+
+namespace mathc {
+
+
+//===============================================================
+//
+// 2D vector
+//
+//===============================================================
+class Vector2 {
+    float V[2];
+    
+public:
+    Vector2();
+    Vector2(float x, float y);
+    float*  get_vec2();
+    float   Length();
+    float&  operator[](int i);
+    float   operator[](int i) const;
+    Vector2 Nomalize();
+    Vector2& operator+=(const Vector2& A);
+    Vector2& operator-=(const Vector2& A);
+    Vector2& operator*=(float scalar);
+    
+};
+
+
+
+//===============================================================
+//
+// 3D vector
+//
+//===============================================================
+
 class Vector3 {
-    public:
-        float x, y, z;
+    float V[3];
+
+public:
+    Vector3();
+    Vector3(float x, float y, float z);
+    float *get_vec3();
+    float&  operator[](int i);
+    float   operator[](int i) const;
+
+};
+
+//===============================================================
+//
+// 4D vector
+//
+//===============================================================
+
+class Vector4 {
+    float V[4];
     
-    public:
-    
-        Vector3(): x(0.0f) , y(0.0f), z(0.0f) {};
-        Vector3(float x, float y, float z);
-    
-        Vector3 cross( const Vector3& vec );
-    
-        float dot( const Vector3& vec );
-        float magnitud();
-        void  normalizar();
-   
-    
-        void operator+= ( const Vector3& vec );
-        void operator-= ( const Vector3& vec );
-        void operator*= ( const Vector3& vec );
-        Vector3 operator-  ( const Vector3& vec );
-        Vector3 operator*  ( const Vector3& vec );
-        Vector3 operator*  ( const float& escalar );
-        void operator*= ( const float& escalar );
-    
-    
+public:
+    Vector4();
+    Vector4(float x, float y, float z, float w);
+    float *get_vec4();
+    float&  operator[](int i);
+    float   operator[](int i) const;
     
 };
 }
 
 
-#endif /* defined(__GFXLib__Vector__) */
+mathc::Vector2 operator+(const mathc::Vector2& A, const mathc::Vector2& B);
+mathc::Vector2 operator-(const mathc::Vector2& A, const mathc::Vector2& B);
+mathc::Vector2 operator*(const mathc::Vector2& A, float scalar);
+
+
+
+#endif /* defined(__CPluss__vector__) */

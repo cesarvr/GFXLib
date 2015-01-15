@@ -1,114 +1,138 @@
 //
-//  Vector.cpp
-//  GFXLib
+//  vector.cpp
+//  CPluss
 //
-//  Created by Cesar Luis Valdez on 04/05/14.
+//  Created by Cesar Luis Valdez on 12/10/14.
 //  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
 //
 
-#include "Vector.h"
+#include "vector.h"
 
+using namespace mathc;
+//===============================================================
+//
+// 2D vector
+//
+//===============================================================
 
-using namespace mlc;
-
-
-Vector3::Vector3(float _x, float _y, float _z): x( _x ), y( _y ), z( _z ){
-    
-    
+Vector2::Vector2() {
+    V[0] = 0.0f;
+    V[0] = 0.0f;
 }
 
-float Vector3::dot(const Vector3& vec){
-    
-    return x*vec.x + y*vec.y + z*vec.z;
+Vector2::Vector2(float x, float y) {
+    V[0] = x;
+    V[1] = y;
 }
 
-float Vector3::magnitud(){
-
-    return sqrtf( (x * x) + (y * y) + (z * z)  );
+float* Vector2::get_vec2() {
+    return V;
 }
 
-void Vector3::normalizar(){
-
-    float l = magnitud();
-    
-    if (l > 0) {
-        (*this)*((float)1.0f/l);
-    }
-    
+float Vector2::operator[](int i) const {
+    return V[i];
+}
+float& Vector2::operator[](int i) {
+    return V[i];
 }
 
-
- /*
-    Cross Product
-  
-    fomrula: PxQ = PyQz - PzQy, PzQx - PxQz, PxQy - PyQx
-  
-    x = PyQz - PzQy
-    y = PzQx - PxQz
-    z = PxQy - PyQx
-  
-  
-  */
-
-
-  
-Vector3 Vector3::cross(const Vector3& vec ){
-
-    return Vector3( (y * vec.z) - (z * vec.y) , (z*vec.x)-(x*vec.z), (x*vec.y)-(y*vec.x) );
+Vector2 Vector2::Nomalize() {
+    float l = this->Length();
+    return Vector2(V[0]/l, V[1]/l);
 }
 
-void Vector3::operator+= (const Vector3& vec){
-    
-    x+= vec.x;
-    y+= vec.y;
-    z+= vec.z;
-
-    
-}
-
-void Vector3::operator-= (const Vector3& vec){
-    
-    x-= vec.x;
-    y-= vec.y;
-    z-= vec.z;
-    
-}
-
-Vector3 Vector3::operator- ( const Vector3& vec ){
-    
-    return Vector3( x-vec.x, y-vec.y, z-vec.z );
-    
+float Vector2::Length() {
+    return sqrtf(V[0] * V[0] + V[1] * V[1]);
 }
 
 
-void Vector3::operator*= (const Vector3& vec){
-    
-    x*= vec.x;
-    y*= vec.y;
-    z*= vec.z;
-    
+Vector2& Vector2::operator*=(float scalar) {
+    V[0]*=scalar;
+    V[1]*=scalar;
+    return *this;
 }
 
-Vector3 Vector3::operator* (const Vector3 &vec){
+Vector2& Vector2::operator+=(const Vector2& A) {
+    V[0]+=A[0];
+    V[1]+=A[1];
+    return *this;
+}
 
-    return Vector3(x*vec.x, y*vec.y, z*vec.z);
+Vector2& Vector2::operator-=(const Vector2& A) {
+    V[0]-=A[0];
+    V[1]-=A[1];
+    return *this;
+}
 
+Vector2 operator+(const Vector2& A, const Vector2& B) {
+    Vector2 R{A};
+    return R+=B;
+}
+
+Vector2 operator-(const Vector2& A, const Vector2& B) {
+    Vector2 R{A};
+    return R-=B;
+}
+
+Vector2 operator*(const Vector2& A, float scalar) {
+    Vector2 R{A};
+    return R*=scalar;
+}
+
+//===============================================================
+//
+// 3D vector
+//
+//===============================================================
+
+Vector3::Vector3() {
+    V[0] = V[1] = V[2] = 0.0f;
+}
+
+Vector3::Vector3(float x, float y, float z) {
+    V[0]=x; V[1]=y; V[2]=z;
+}
+
+float* Vector3::get_vec3() {
+    return V;
+}
+
+float& Vector3::operator[](int i) {
+    return V[i];
+}
+
+float Vector3::operator[](int i) const {
+    return V[i];
 }
 
 
-void Vector3::operator*= (const float& escalar){
-    x*=escalar;
-    y*=escalar;
-    z*=escalar;
+//===============================================================
+//
+// 4D vector
+//
+//===============================================================
+
+Vector4::Vector4() {
+    V[0] = V[1] = V[2] = V[3]= 0.0f;
 }
 
-Vector3 Vector3::operator* (const float& escalar){
-    
-  return Vector3(x*escalar, y*escalar, z*escalar);
-    
+Vector4::Vector4(float x, float y, float z, float w) {
+    V[0]=x; V[1]=y; V[2]=z; V[3] = w;
 }
 
-    
+float* Vector4::get_vec4() {
+    return V;
+}
+
+float& Vector4::operator[](int i) {
+    return V[i];
+}
+
+float Vector4::operator[](int i) const {
+    return V[i];
+}
+
+
 
 
 
