@@ -1,223 +1,88 @@
 //
 //  main.cpp
-//  GFXLib
+//  CPluss
 //
-//  Created by Cesar Luis Valdez on 04/05/14.
+//  Created by Cesar Luis Valdez on 11/10/14.
 //  Copyright (c) 2014 Cesar Luis Valdez. All rights reserved.
 //
 
 #include <iostream>
-#include <stdio.h>
-#include "GFXLib.h"
+#include <memory.h>
+#include "mathla.h"
 
-using namespace mlc;
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
 
-void prueba1(){
+using namespace mathc;
 
-    
-    Vector3 vector1(1.0f,  2.0f, 3.0f);
-    Vector3 vector2(2.0f, -2.0f, 3.0f);
-    
-    vector1+=vector2;
-    vector1 * 3;
-    
-    std::cout << "x: " << vector1.x << " y: " << vector1.y << " z: " << vector1.z << std::endl;
-    
-    
-    Vector3 cross = vector1.cross(vector2);
-    
-    std::cout << " cross x: " << cross.x << " y: " << cross.y << " z: " << cross.z << std::endl;
-    
-    float producto_escalar =  cross.dot(vector1);
-    
-    
-    std::cout << " dot of cross: " << producto_escalar << std::endl;
-    std::cout << " len of cross: " << cross.magnitud() << std::endl;
-    
-    
-    Vector3 vec(1.0f,  2.0f, 3.0f);
-    
-    
-    std::cout << "vec1 x: " << vec.x << " y: " << vec.y << " z: " << vec.z << std::endl;
-    
-    vec.normalizar();
-    
-    std::cout << "vec1 unidad x: " << vec.x << " y: " << vec.y << " z: " << vec.z << std::endl;
+void show_raw_matrix(float *M) {
 
+    printf("\n\n");
+    
+    for (int x= 0; x<16; x++) {
+        if (x!=0 && (x % 4) == 0) {
+            printf("\n");
+        }
+        printf(" %f ", M[x]);
+        
+    }
 }
-
-void prueba2(){
-
-    Vector3 P(1.0f, 2.0f, 3.0f);
-    Vector3 Q(2.0f, 1.5f, 4.0f);
-    Vector3 R(1.0f, 2.5f, 0.5f);
-    std::cout << "inicio " << std::endl;
-    std::cout << "P: " << P.x << " y: " << P.y << " z: " << P.z << std::endl;
-    std::cout << "Q: " << Q.x << " y: " << Q.y << " z: " << Q.z << std::endl;
-    std::cout << "R: " << R.x << " y: " << R.y << " z: " << R.z << std::endl;
-    
-    
-    
-    Vector3 res = P.cross(Q);
-    
-    float d = res.dot(Q);
-    std::cout << "dot: " << d << std::endl;
-    res = res.cross(R);
-    
-    std::cout << "PxQxR x: " << res.x << " y: " << res.y << " z: " << res.z << std::endl;
-    
-    
-    
-    
-    float PRd = P.dot(R);
-    std::cout << "(P.R): " << PRd << std::endl << std::endl;
-    Vector3 res_PRQ = Q * PRd;
-    std::cout << "(P.R)Q: x:" << res_PRQ.x << " y: " << res_PRQ.y << " z: " << res_PRQ.z << std::endl;
-    
-    
-    float QRd = Q.dot(R);
-    std::cout << " (Q.R): " << QRd << std::endl << std::endl;
-
-    Vector3 res_QRP = P * QRd;
-    
-    std::cout << "(Q.R)P: x: " << res_QRP.x << " y: " << res_QRP.y << " z: " << res_QRP.z << std::endl;
-
-    
-    Vector3 PRQ_QRP = res_PRQ - res_QRP;
-    
-    std::cout << "(P.R)Q - (Q.R)P: x:" << PRQ_QRP.x << " y: " << PRQ_QRP.y << " z: " << PRQ_QRP.z << std::endl;
-    
-
-    
-    
-    
-    std::cout << "P: " << P.x << " y: " << P.y << " z: " << P.z << std::endl;
-    std::cout << "Q: " << Q.x << " y: " << Q.y << " z: " << Q.z << std::endl;
-    std::cout << "R: " << R.x << " y: " << R.y << " z: " << R.z << std::endl;
-    
-}
-
-void cross_test(){
-
-    Vector3 P(1.0f, 2.0f, 3.0f);
-    Vector3 Q(2.0f, 1.5f, 4.0f);
-    Vector3 R(1.0f, 2.5f, 0.5f);
-    std::cout << "inicio " << std::endl;
-    std::cout << "P: x:" << P.x << " y: " << P.y << " z: " << P.z << std::endl;
-    std::cout << "Q: x:" << Q.x << " y: " << Q.y << " z: " << Q.z << std::endl;
-    std::cout << "R: x:" << R.x << " y: " << R.y << " z: " << R.z << std::endl;
-    
-    
-    
-    Vector3 cross = P.cross(Q);
-    
-    float d = cross.dot(Q);
-    std::cout << "CROSS x: " << cross.x << " y: " << cross.y << " z: " << cross.z << std::endl;
-    
-    std::cout << "dot: " << d << std::endl;
-
-
-
-}
-
-void showMat(const Matrix3 mat){
-    std::cout << " " << std::endl;
-    std::cout.precision(4);
-    std::cout << mat.m11 << " " << mat.m12 << " " << mat.m13 << std::fixed<< std::endl;
-    std::cout << mat.m21 << " " << mat.m22 << " " << mat.m23 << std::endl;
-    std::cout << mat.m31 << " " << mat.m32 << " " << mat.m33 << std::endl;
-    std::cout << " " << std::endl;
-    
-    printf("\n\n%f %f %f \n", mat.m11,mat.m12,mat.m13 );
-    printf("%f %f %f \n", mat.m21,mat.m22,mat.m23 );
-    printf("%f %f %f \n\n", mat.m31,mat.m32,mat.m33 );
- 
-}
-
-void test_mat_add(){
-    
-    Matrix3 mtx1, mtx2;
-    mtx1 += mtx2;
-    
-    showMat(mtx1);
-    
-    
-    
-    mtx1 -= mtx2;
-    showMat(mtx1);
-    
-
-    
-    Matrix3 mtx3(4.0f, 2.0f, 3.0f,
-                 2.0f, 4.0f, 1.0f,
-                 3.0f, 2.0f, 1.0f);
-    
-    mtx3 *= mtx1;
-    
-    
-    showMat(mtx3);
-    
-    
-    std::cout << "mtx3.Determinant: "<< mtx3.determinant() << std::endl;
-    
-    std::cout << "inverse" << std::endl;
-    
-    Matrix3 m = mtx3.inverse();
-    
-    showMat(m );
-    
-    
-    std::cout << "inverse proof" << std::endl;
-    
-    mtx3 *= m ;
-    
-    showMat(mtx3);
+void show_matrix(mathc::Matrix4 &M){
    
+    for (int y=0; y<4; y++){
+        printf("\n");
+        for (int x= 0; x<4; x++) {
+            printf(" %f ", M[4*y+x]);
+            
+        }
+    }
+        printf("\n\n");
+
+        for (int x= 0; x<16; x++) {
+            if (x!=0 && (x % 4) == 0) {
+                printf("\n");
+            }
+            printf(" %f ", M[x]);
+            
+        }
+    
+     printf("\n");
+}
+void Vector_Test(){
+
+    mathc::Vector2 x(1,1);
+    mathc::Vector2 y(2,2);
+    mathc::Vector2 z(3,3);
+    
+    mathc::Vector2 r = x+y+(z * 0.015f);
+    
+    mathc::Vector3 v3(1.0f,2.0f,3.0f);
+    
+    printf("x:%f y:%f \n", r[0], r[1]);
+    printf("x:%f y:%f \n", r.get_vec2()[0], r.get_vec2()[1]);
+    
+    r = r.Nomalize();
+    printf("x:%f y:%f \n", r.get_vec2()[0], r.get_vec2()[1]);
+    
+    printf(" vec3 -> x:%f y:%f z:%f \n", v3[0], v3[1], v3[2]);
+
+}
+
+void Matrix_Test() {
+
+    mathc::Matrix4 m;
+    mathc::Matrix4::ApplyTranslation(m, 10, 10, 0);
+    mathc::Matrix4 cam = mathc::Matrix4::MakeOrthoProjection(0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 1, -1);
+
+    mathc::Matrix4 mvp = cam * m;
+    
+    show_matrix(mvp);
+
+    
     
 }
 
-void euler_proof(){
-
-    Matrix3 R(  cosf(1.57079633), -sinf(1.57079633), 0.0f,
-                sinf(1.57079633), cosf(1.57079633),  0.0f,
-                0.0f,       0.0f,       1.0f);
-/*
-    Matrix3 R(  1.0f, 0.0f,  0.0f,
-                0.0f, 1.0f,  0.0f,
-                0.0f, 0.0f,  1.0f);
-      */
-    
-   // Matrix3 _R = R.determinant();
-    
-    showMat(R);
-    
-    std::cout << "determinant " << R.determinant() << std::endl;
-    printf("--> %f \n", R.determinant() );
-   // showMat(_R);
-    
-
-}
-
-
-void quat(){
-
-    Quaternion q1(1.0f ,1.0f, 2.0f , 3.0f );
-    Quaternion q2(1.0f ,1.0f, 2.0f , 3.0f );
-
-    q1 *= q2;
-    
-    printf(" --> w%f x%f y%f z%f", q1.w, q1.x, q1.y, q1.z);
-    
-
-}
-
-int main(int argc, const char * argv[])
-{
-    //cross_test();
-    //prueba2();
-   // test_mat_add();
-    //euler_proof();
-    quat();
+int main(int argc, const char * argv[]) {
+    Matrix_Test();
     return 0;
 }
-
